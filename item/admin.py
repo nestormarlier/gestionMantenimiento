@@ -3,9 +3,10 @@ from django.utils.html import format_html
 from .models import Equipo_Asociado, Stock,StockAudit
 from django.core.exceptions import ValidationError
 from django.contrib import messages
+from import_export.admin import ImportExportModelAdmin
 
 
-class StockAdmin(admin.ModelAdmin):
+class StockAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display = ('repuesto_id_css','descripcion', 'equipo_asociado', 'stock_status_css','stock_minimo')
     readonly_fields = ('modified_by',)
     search_fields = ('repuesto_id', 'equipo_asociado__nombre')
